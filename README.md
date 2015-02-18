@@ -30,8 +30,22 @@ Purpose of this image is:
 	'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch '
 
 
+## Default Environment variable used in configuration
 
-Notes:
+| NAME                                 |  default value |
+| ------------------------------------ | -------------- |
+| ELASTICSEARCH_CLUSTER_NAME           | elasticsearch  |
+| ELASTICSEARCH_NODE_MASTER            | true           |
+| ELASTICSEARCH_NODE_DATA              | true           |
+| ELASTICSEARCH_INDEX_NUMBER_SHARDS    | 5              |
+| ELASTICSEARCH_INDEX_NUMBER_REPLICAS  | 1              |
+| ELASTICSEARCH_TRANSPORT_TCP_PORT     | 9300           |
+| ELASTICSEARCH_TRANSPORT_TCP_COMPRESS | false          |
+| ELASTICSEARCH_HTTP_PORT              | 9200           |
+| ELASTICSEARCH_HTTP_JSONP_ENABLE      | false          |
+
+
+## Notes
 
 - Configuration path: /etc/elasticsearch
 - Data path: /var/lib/elasticsearch/data
@@ -45,10 +59,12 @@ Notes:
 
 - install elasticsearch
 - define ELASTICSEARCH_VERSION (1.4.3)
-- add volume on data folder (/var/lib/elasticsearch/data)
+- add volume on data folder (/var/lib/elasticsearch/data) and log folder (/var/log/elasticsearch)
 - customize configuration with environment variable and define default standard value 
 - default log ouput to console
-- index slow log into standard files
+- expose 9200 (http) and 9300 (transport) port
+- launch elasticsearch with elasticsearch user
+- default configuration is a master with node storage capability
 
 # Build
 
