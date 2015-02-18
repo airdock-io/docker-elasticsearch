@@ -29,5 +29,5 @@ debug:
 	docker run -t -i $(NAME):$(VERSION)
 
 run:
-	@echo "IPAddress =" $$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $$(docker run -d $(NAME):$(VERSION)))
+	@echo "IPAddress =" $$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $$(docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -d $(NAME):$(VERSION)))
 	

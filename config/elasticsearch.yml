@@ -1,0 +1,24 @@
+# common settings
+cluster.name: ${ELASTICSEARCH_CLUSTER_NAME}
+node.master: ${ELASTICSEARCH_NODE_MASTER}
+node.data: ${ELASTICSEARCH_NODE_DATA}
+index.number_of_shards: ${ELASTICSEARCH_INDEX_NUMBER_SHARDS}
+index.number_of_replicas: ${ELASTICSEARCH_INDEX_NUMBER_REPLICAS}
+transport.tcp.port: ${ELASTICSEARCH_TRANSPORT_TCP_PORT}
+transport.tcp.compress: ${ELASTICSEARCH_TRANSPORT_TCP_COMPRESS}
+http.port: ${ELASTICSEARCH_HTTP_PORT}
+http.jsonp.enable: ${ELASTICSEARCH_HTTP_JSONP_ENABLE}
+
+#Kibana 3 and Elasticsearch 1.4 - CORS problem
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
+
+path.conf: /etc/elasticsearch
+path.data: /var/lib/elasticsearch/data
+path.work: /tmp/elasticsearch
+path.logs: /var/logs/elasticsearch
+path.plugins: /usr/share/elasticsearch/plugins
+
+
+
