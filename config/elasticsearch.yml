@@ -4,10 +4,10 @@ node.master: ${ELASTICSEARCH_NODE_MASTER}
 node.data: ${ELASTICSEARCH_NODE_DATA}
 index.number_of_shards: ${ELASTICSEARCH_INDEX_NUMBER_SHARDS}
 index.number_of_replicas: ${ELASTICSEARCH_INDEX_NUMBER_REPLICAS}
-transport.tcp.port: ${ELASTICSEARCH_TRANSPORT_TCP_PORT} 9300
-transport.tcp.compress: ${ELASTICSEARCH_TRANSPORT_TCP_COMPRESS} false
-http.port: ${ELASTICSEARCH_HTTP_PORT}9200
-http.jsonp.enable: ${ELASTICSEARCH_HTTP_JSONP_ENABLE } false
+transport.tcp.port: ${ELASTICSEARCH_TRANSPORT_TCP_PORT}
+transport.tcp.compress: ${ELASTICSEARCH_TRANSPORT_TCP_COMPRESS}
+http.port: ${ELASTICSEARCH_HTTP_PORT}
+http.jsonp.enable: ${ELASTICSEARCH_HTTP_JSONP_ENABLE}
 
 #Kibana 3 and Elasticsearch 1.4 - CORS problem
 http.cors.enabled: true

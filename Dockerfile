@@ -63,3 +63,5 @@ EXPOSE 9300
 CMD ["gosu", "elasticsearch:elasticsearch", "/usr/share/elasticsearch/bin/elasticsearch", "--default.config" ,"/etc/elasticsearch/elasticsearch.yml"]
 
 
+
+
