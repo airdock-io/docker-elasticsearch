@@ -29,26 +29,36 @@ Purpose of this image is:
 3. Execute redis server with default configuration:
 	'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch '
 
+## Elasticsearch Configuration 
 
-## Default Environment variable used in configuration
+'''
+	# common settings
+	cluster.name: elasticsearch
+	node.master: true
+	node.data: true
+	index.number_of_shards: 5
+	index.number_of_replicas: 1
+	transport.tcp.port: 9300
+	transport.tcp.compress: false
+	http.port: 9200
+	http.jsonp.enable: false
 
-| NAME                                 |  default value |
-| ------------------------------------ | -------------- |
-| ELASTICSEARCH_CLUSTER_NAME           | elasticsearch  |
-| ELASTICSEARCH_NODE_MASTER            | true           |
-| ELASTICSEARCH_NODE_DATA              | true           |
-| ELASTICSEARCH_INDEX_NUMBER_SHARDS    | 5              |
-| ELASTICSEARCH_INDEX_NUMBER_REPLICAS  | 1              |
-| ELASTICSEARCH_TRANSPORT_TCP_PORT     | 9300           |
-| ELASTICSEARCH_TRANSPORT_TCP_COMPRESS | false          |
-| ELASTICSEARCH_HTTP_PORT              | 9200           |
-| ELASTICSEARCH_HTTP_JSONP_ENABLE      | false          |
+	#Kibana 3 and Elasticsearch 1.4 - CORS problem
+	http.cors.enabled: true
+	http.cors.allow-origin: "*"
 
+
+	path.conf: /etc/elasticsearch
+	path.data: /var/lib/elasticsearch
+	path.work: /tmp/elasticsearch
+	path.logs: /var/logs/elasticsearch
+	path.plugins: /usr/share/elasticsearch/plugins
+'''
 
 ## Notes
 
 - Configuration path: /etc/elasticsearch
-- Data path: /var/lib/elasticsearch/data
+- Data path: /var/lib/elasticsearch
 - Log path: /var/logs/elasticsearch
 - Plugins installation path: /usr/share/elasticsearch/plugins
 
@@ -59,12 +69,12 @@ Purpose of this image is:
 
 - install elasticsearch
 - define ELASTICSEARCH_VERSION (1.4.3)
-- add volume on data folder (/var/lib/elasticsearch/data) and log folder (/var/log/elasticsearch)
-- customize configuration with environment variable and define default standard value 
+- add volume on data folder (/var/lib/elasticsearch) and log folder (/var/log/elasticsearch)
 - default log ouput to console
 - expose 9200 (http) and 9300 (transport) port
 - launch elasticsearch with elasticsearch user
 - default configuration is a master with node storage capability
+- add plugin mobz/elasticsearch-head
 
 # Build
 
