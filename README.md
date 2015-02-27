@@ -1,6 +1,6 @@
 # ElasticSearch
 
-Docker Image for [elasticsearch](http://www.elasticsearch.com/) based on airdock/oracle-jdk:1.8
+Docker Image for [elasticsearch](http://www.elasticsearch.com/) based on airdock/oracle-jdk:1.8 (latest)
 
 
 Purpose of this image is:
@@ -10,7 +10,7 @@ Purpose of this image is:
 
 > Name: airdock/elasticsearch
 
-***Dependency***: airdock/oracle-jdk:1.8
+***Dependency***: airdock/oracle-jdk:latest
 
 ***Few links***:
 
