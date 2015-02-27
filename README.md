@@ -29,9 +29,18 @@ Purpose of this image is:
 3. Execute redis server with default configuration:
 	'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch '
 
+### With a persistent storage
+
+	docker run -d -p 9200:9200 -p 9300:9300 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elasticsearch airdock/elasticsearch
+
+Take care about your permission on host folder named '/var/lib/elasticsearch'.
+The user elasticsearch (uid 42) is for the host an "other", so you should have a 'chmod o+rw /var/lib/elasticsearch' or create a dedicated user on your host with uid 42.
+See [How Managing user in docker container](https://github.com/airdock-io/docker-base/blob/master/README.md#how-managing-user-in-docker-container).
+
+
 ## Elasticsearch Configuration 
 
-'''
+```
 	# common settings
 	cluster.name: elasticsearch
 	node.master: true
@@ -53,7 +62,7 @@ Purpose of this image is:
 	path.work: /tmp/elasticsearch
 	path.logs: /var/logs/elasticsearch
 	path.plugins: /usr/share/elasticsearch/plugins
-'''
+```
 
 ## Notes
 
@@ -63,7 +72,7 @@ Purpose of this image is:
 - Plugins installation path: /usr/share/elasticsearch/plugins
 
 # Change Log
- 
+
 
 ## latest (current)
 
@@ -72,9 +81,9 @@ Purpose of this image is:
 - add volume on data folder (/var/lib/elasticsearch) and log folder (/var/log/elasticsearch)
 - default log ouput to console
 - expose 9200 (http) and 9300 (transport) port
-- launch elasticsearch with elasticsearch user
 - default configuration is a master with node storage capability
 - add plugin mobz/elasticsearch-head
+- launch elasticsearch with elasticsearch user 
 
 # Build
 
