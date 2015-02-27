@@ -5,7 +5,7 @@
 # SOURCE:         https://github.com/airdock-io/docker-elasticsearch
 
 # Pull base image.
-FROM airdock/oracle-jdk:1.8
+FROM airdock/oracle-jdk:latest
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
 ENV ELASTICSEARCH_VERSION 1.4.3
@@ -29,7 +29,8 @@ RUN curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add 
 	mv /tmp/*.yml /etc/elasticsearch && \
     mkdir -p /var/lib/elasticsearch  $ES_HOME/plugins && \
     chown -R $ES_USER:$ES_USER /var/log/elasticsearch /var/lib/elasticsearch $ES_HOME/plugins && \
-	$ES_HOME/bin/plugin -install mobz/elasticsearch-head && \	
+	$ES_HOME/bin/plugin -install mobz/elasticsearch-head && \
+    /root/fix-user $ES_USER && \
 	apt-get clean -qq && \
 	rm -rf /var/lib/apt/lists/* /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 

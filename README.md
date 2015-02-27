@@ -34,8 +34,8 @@ Purpose of this image is:
 	docker run -d -p 9200:9200 -p 9300:9300 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elasticsearch airdock/elasticsearch
 
 Take care about your permission on host folder named '/var/lib/elasticsearch'.
-The user elasticsearch is for the host an "other", so you should have a ''chmod o+rw /var/lib/elasticsearch'.
-Ugly, we must do more test on this "issue"...
+The user elasticsearch (uid 42) is for the host an "other", so you should have a 'chmod o+rw /var/lib/elasticsearch' or create a dedicated user on your host with uid 42.
+See [How Managing user in docker container](https://github.com/airdock-io/docker-base/blob/master/README.md#how-managing-user-in-docker-container).
 
 
 ## Elasticsearch Configuration 
