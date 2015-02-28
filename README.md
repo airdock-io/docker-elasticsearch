@@ -23,22 +23,41 @@ Purpose of this image is:
 
 # Usage
 
-1. You should have already install [Docker](https://www.docker.com/) and [Fig](http://www.fig.sh/) for more complex usage.
-2. Download [automated build](https://registry.hub.docker.com/u/airdock/) from public [Docker Hub Registry](https://registry.hub.docker.com/):
+You should have already install [Docker](https://www.docker.com/) and [Fig](http://www.fig.sh/) for more complex usage.
+Download [automated build](https://registry.hub.docker.com/u/airdock/) from public [Docker Hub Registry](https://registry.hub.docker.com/):
 `docker search airdock` or go directly in 3.
-3. Execute redis server with default configuration:
+
+Execute redis server with default configuration:
+
 	'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch '
 
-### With a persistent storage
+## With a persistent storage
 
-	docker run -d -p 9200:9200 -p 9300:9300 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elasticsearch airdock/elasticsearch
+	'docker run -d -p 9200:9200 -p 9300:9300 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elasticsearch airdock/elasticsearch'
 
 Take care about your permission on host folder named '/var/lib/elasticsearch'.
-The user elasticsearch (uid 42) is for the host an "other", so you should have a 'chmod o+rw /var/lib/elasticsearch' or create a dedicated user on your host with uid 42.
-See [How Managing user in docker container](https://github.com/airdock-io/docker-base/blob/master/README.md#how-managing-user-in-docker-container).
+
+The user elasticsearch (uid 102) in your container should be known into your host.
+See [How Managing user in docker container](https://github.com/airdock-io/docker-base/blob/master/README.md#how-managing-user-in-docker-container) and  [Common User List](https://github.com/airdock-io/docker-base/blob/master/CommonUserList.md).
+
+So you should create an user with this uid:gid:
+
+```
+  sudo groupadd elasticsearch -g 102
+  sudo useradd -u 102  --no-create-home --system --no-user-group elasticsearch
+  sudo usermod -g elasticsearch elasticsearch
+```
+
+And then set owner and permissions on your host directory:
+
+```
+	chown -R elasticsearch:elasticsearch /var/lib/elasticsearch
+```
 
 
-## Elasticsearch Configuration 
+
+
+## Elasticsearch Configuration
 
 ```
 	# common settings
@@ -83,7 +102,8 @@ See [How Managing user in docker container](https://github.com/airdock-io/docker
 - expose 9200 (http) and 9300 (transport) port
 - default configuration is a master with node storage capability
 - add plugin mobz/elasticsearch-head
-- launch elasticsearch with elasticsearch user 
+- launch elasticsearch with elasticsearch user
+
 
 # Build
 
@@ -100,8 +120,8 @@ And *tasks*:
 - ***all***: alias to 'build'
 - ***clean***: remove all container which depends on this image, and remove image previously builded
 - ***build***: clean and build the current version
-- ***tag_latest***: build and tag current version with ":latest"
-- ***release***: execute tag_latest, push image onto registry, and tag git repository
+- ***tag_latest***: tag current version with ":latest"
+- ***release***: build and execute tag_latest, push image onto registry, and tag git repository
 - ***debug***: launch default command with builded image in interactive mode
 - ***run***: run image as daemon and print IP address.
 
