@@ -25,7 +25,7 @@ Purpose of this image is:
 
 You should have already install [Docker](https://www.docker.com/) and [Fig](http://www.fig.sh/) for more complex usage.
 Download [automated build](https://registry.hub.docker.com/u/airdock/) from public [Docker Hub Registry](https://registry.hub.docker.com/):
-`docker search airdock` or go directly in 3.
+`docker search airdock`
 
 Execute redis server with default configuration:
 
