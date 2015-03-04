@@ -37,14 +37,14 @@ Execute redis server with default configuration:
 
 Take care about your permission on host folder named '/var/lib/elasticsearch'.
 
-The user elasticsearch (uid 102) in your container should be known into your host.
+The user elasticsearch (uid 4202) in your container should be known into your host.
 See [How Managing user in docker container](https://github.com/airdock-io/docker-base/blob/master/README.md#how-managing-user-in-docker-container) and  [Common User List](https://github.com/airdock-io/docker-base/blob/master/CommonUserList.md).
 
 So you should create an user with this uid:gid:
 
 ```
-  sudo groupadd elasticsearch -g 102
-  sudo useradd -u 102  --no-create-home --system --no-user-group elasticsearch
+  sudo groupadd elasticsearch -g 4202
+  sudo useradd -u 4202  --no-create-home --system --no-user-group elasticsearch
   sudo usermod -g elasticsearch elasticsearch
 ```
 
@@ -97,7 +97,7 @@ And then set owner and permissions on your host directory:
 
 - install elasticsearch
 - define ELASTICSEARCH_VERSION (1.4.3)
-- add volume on data folder (/var/lib/elasticsearch) and log folder (/var/log/elasticsearch)
+- add volume on data folder (/var/lib/elasticsearch)
 - default log ouput to console
 - expose 9200 (http) and 9300 (transport) port
 - default configuration is a master with node storage capability
