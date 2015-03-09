@@ -29,7 +29,7 @@ RUN curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add 
   /root/post-install
 
 # Mountable data directories.
-VOLUME ["/var/lib/elasticsearch"]
+VOLUME ["/var/lib/elasticsearch", "/var/log/elasticsearch"]
 
 # Expose HTTP and transport port
 EXPOSE 9200 9300

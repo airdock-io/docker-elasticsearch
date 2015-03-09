@@ -97,7 +97,7 @@ And then set owner and permissions on your host directory:
 
 - install elasticsearch
 - define ELASTICSEARCH_VERSION (1.4.3)
-- add volume on data folder (/var/lib/elasticsearch)
+- add volume on data folder (/var/lib/elasticsearch) and log folder
 - default log ouput to console
 - expose 9200 (http) and 9300 (transport) port
 - default configuration is a master with node storage capability
