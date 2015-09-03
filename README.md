@@ -10,6 +10,12 @@ Purpose of this image is:
 
 > Name: airdock/elasticsearch
 
+You could retreive:
+
+- airdock/elasticsearch:latest image with elastic version 1.7.1
+- airdock/elasticsearch:v1.4.3 tagged image build with elasticsearch verison 1.4.3
+- airdock/elasticsearch:v1.6.XX tagged image build with elasticsearch verison 1.6
+
 ***Dependency***: airdock/oracle-jdk:latest
 
 ***Few links***:
@@ -92,9 +98,18 @@ And then set owner and permissions on your host directory:
 
 # Change Log
 
-
 ## latest (current)
 
+- define ELASTICSEARCH_VERSION (1.7.1)
+
+https://www.elastic.co/guide/en/elasticsearch/reference/1.7/setup-repositories.html
+
+## v1.6.
+
+- define ELASTICSEARCH_VERSION (1.6.XXX)
+https://www.elastic.co/guide/en/elasticsearch/reference/1.6/setup-repositories.html
+
+## v1.4.3
 - install elasticsearch
 - define ELASTICSEARCH_VERSION (1.4.3)
 - add volume on data folder (/var/lib/elasticsearch) and log folder (/var/log/elasticsearch)
