@@ -9,8 +9,8 @@ FROM airdock/oracle-jdk:latest
 
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
-# installed version
-ENV ELASTICSEARCH_VERSION 1.4.3
+# installed version 
+ENV ELASTICSEARCH_VERSION 1.6.2
 
 # Define user
 ENV ES_USER elasticsearch
@@ -26,7 +26,7 @@ ADD config/*.yml /tmp/
 # install elasticsearch and obz/elasticsearch-head plugin
 # set elasticsearch user id 102:102
 RUN curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
-	echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' > /etc/apt/sources.list.d/elasticsearch.list && \
+	echo 'deb http://packages.elasticsearch.org/elasticsearch/1.6/debian stable main' > /etc/apt/sources.list.d/elasticsearch.list && \
 	apt-get update -qq && \
 	apt-get install -y elasticsearch=$ELASTICSEARCH_VERSION && \
 	rm /etc/elasticsearch/*.yml && \
@@ -34,7 +34,6 @@ RUN curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add 
   mkdir -p /var/lib/elasticsearch  $ES_HOME/plugins && \
   chown -R $ES_USER:$ES_USER /var/log/elasticsearch /var/lib/elasticsearch $ES_HOME/plugins && \
 	$ES_HOME/bin/plugin -install mobz/elasticsearch-head && \
-  /root/fix-user $ES_USER 102 102 && \
 	apt-get clean -qq && \
 	rm -rf /var/lib/apt/lists/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
