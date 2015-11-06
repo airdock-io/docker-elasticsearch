@@ -1,4 +1,4 @@
-# ElasticSearch
+# ElasticSearch [![](https://badge.imagelayers.io/airdock/elasticsearch:latest.svg)](https://imagelayers.io/?images=airdock/elasticsearch:latest 'Get your own badge on imagelayers.io')
 
 Docker Image for [elasticsearch](http://www.elasticsearch.com/) based on airdock/oracle-jdk:1.8 (latest)
 
