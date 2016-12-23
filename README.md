@@ -25,7 +25,7 @@ Purpose of this image is:
 
 - 2.4, latest: Elasticsearch 2.4.2 [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:2.4.svg)](https://microbadger.com/images/airdock/elasticsearch:2.4 "Get your own image badge on microbadger.com")
 - 1.4: Elasticsearch 1.4.5 [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:1.4.svg)](https://microbadger.com/images/airdock/elasticsearch:1.4 "Get your own image badge on microbadger.com")
-
+- v1.4.3: Elasticsearch 1.4.3 on jdk-8u74 [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:v1.4.3.svg)](https://microbadger.com/images/airdock/elasticsearch:v1.4.3 "Get your own image badge on microbadger.com")
 
 # Usage
 
