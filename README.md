@@ -1,16 +1,17 @@
-# ElasticSearch [![](https://badge.imagelayers.io/airdock/elasticsearch:latest.svg)](https://imagelayers.io/?images=airdock/elasticsearch:latest 'Get your own badge on imagelayers.io')
-
-Docker Image for [elasticsearch](http://www.elasticsearch.com/) based on airdock/oracle-jdk:1.8 (latest)
+# ElasticSearch [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:latest.svg)](https://microbadger.com/images/airdock/elasticsearch:latest "Get your own image badge on microbadger.com")
+Docker Image for [elasticsearch](http://www.elasticsearch.com/) based on airdock/oracle-jdk:1.8
 
 
 Purpose of this image is:
 
-- install elasticsearch server
-- based on airdock/oracle-jdk:1.8 (debian)
+- install elasticsearch service
+- use elasticsearch user account
+- integrate tini process management
+- based on airdock/oracle-jdk:1.8 (debian jessie)
+- use a [web front end](https://github.com/mobz/elasticsearch-head)
 
 > Name: airdock/elasticsearch
 
-***Dependency***: airdock/oracle-jdk:latest
 
 ***Few links***:
 
@@ -20,15 +21,27 @@ Purpose of this image is:
 - [Configuration](http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html)
 
 
+# Tags
+
+- 2.4, latest: Elasticsearch 2.4.2 [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:2.4.svg)](https://microbadger.com/images/airdock/elasticsearch:2.4 "Get your own image badge on microbadger.com")
+- 1.4: Elasticsearch 1.4.5 [![](https://images.microbadger.com/badges/image/airdock/elasticsearch:1.4.svg)](https://microbadger.com/images/airdock/elasticsearch:1.4 "Get your own image badge on microbadger.com")
+
 
 # Usage
 
+## Launch Elastic Search Service
+
+### with default
 
 Execute elastic server with default configuration:
+```
+	docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch
+```
 
-	'docker run -d -p 9200:9200 -p 9300:9300 --name elasticsearch airdock/elasticsearch '
+Web front end URL will be: ```http://<YOUR HOST>:9200/_plugin/head/```
 
-## With a persistent storage
+
+### With a persistent storage
 
 	'docker run -d -p 9200:9200 -p 9300:9300 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elasticsearch airdock/elasticsearch'
 
@@ -58,6 +71,33 @@ Don't forget to add your current user to this new group.
 
 
 ## Elasticsearch Configuration
+
+### Elastic 2.4
+
+```
+# common settings
+network:
+  host: 0.0.0.0
+
+cluster:
+  name: elasticsearch
+
+path:
+  logs: /var/log/elasticsearch
+  data: /var/lib/elasticsearch
+  conf: /etc/elasticsearch
+
+http.cors:
+  enabled: true
+  allow-origin: "*"
+
+transport:
+  tcp:
+    port: 9300
+    compress: false
+```
+
+### Elastic 1.4
 
 ```
 	# common settings
@@ -92,11 +132,19 @@ Don't forget to add your current user to this new group.
 
 # Change Log
 
+## Tag 2.4 (latest)
 
-## latest (current)
+- install elatsticsearch (2.4.2)
+- integrate tini and launch elasticsearch with elasticsearch user
+- expose 9200 (http) and 9300 (transport) port
+- add plugin mobz/elasticsearch-head
+- MIT license
+
+## Tag 1.4
 
 - install elasticsearch
-- define ELASTICSEARCH_VERSION (1.4.3)
+- integrate tini
+- define ELASTICSEARCH_VERSION (1.4.5)
 - add volume on data folder (/var/lib/elasticsearch) and log folder
 - default log ouput to console
 - expose 9200 (http) and 9300 (transport) port
@@ -104,6 +152,7 @@ Don't forget to add your current user to this new group.
 - add plugin mobz/elasticsearch-head
 - launch elasticsearch with elasticsearch user
 - MIT license
+
 
 # Build
 

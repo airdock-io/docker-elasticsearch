@@ -1,5 +1,5 @@
 NAME = airdock/elasticsearch
-VERSION = dev
+VERSION = dev-2.4
 
 .PHONY: all clean build tag_latest release debug run
 

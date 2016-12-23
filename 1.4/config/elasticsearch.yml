@@ -1,0 +1,22 @@
+# common settings
+cluster.name: elasticsearch
+node.master: true
+node.data: true
+index.number_of_shards: 5
+index.number_of_replicas: 1
+transport.tcp.port: 9300
+transport.tcp.compress: false
+http.port: 9200
+http.jsonp.enable: false
+
+#Kibana 3 and Elasticsearch 1.4 - CORS problem
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+
+
+path.conf: /etc/elasticsearch
+path.data: /var/lib/elasticsearch
+path.work: /tmp/elasticsearch
+path.logs: /var/logs/elasticsearch
+path.plugins: /usr/share/elasticsearch/plugins
+

@@ -1,5 +1,5 @@
 NAME = airdock/elasticsearch
-VERSION = dev
+VERSION = dev-1.4
 
 .PHONY: all clean build tag_latest release debug run
 
@@ -24,7 +24,7 @@ release: build tag_latest
 	@git push origin v-$(VERSION)
 
 debug:
-	docker run -t -i -p 9200:9200 -p 9300:9300  $(NAME):$(VERSION)
+	docker run -t -i -p 9200:9200 -p 9300:9300 $(NAME):$(VERSION)
 
 run:
 	@echo "IPAddress =" $$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $$(docker run -p 9200:9200 -p 9300:9300 --name elasticsearch -d $(NAME):$(VERSION)))
