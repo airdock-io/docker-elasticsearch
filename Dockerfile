@@ -17,7 +17,8 @@ ADD config/*.yml /tmp/
 
 # add gpg key for elasticsearch
 # install elasticsearch and obz/elasticsearch-head plugin
-RUN curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
+RUN apt-get update -qq && apt-get install -y --no-install-recommends ca-certificates && \
+  curl https://packages.elasticsearch.org/GPG-KEY-elasticsearch | apt-key add - && \
 	echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' > /etc/apt/sources.list.d/elasticsearch.list && \
 	apt-get update -qq && \
 	apt-get install -y elasticsearch=$ELASTICSEARCH_VERSION && \
