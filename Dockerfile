@@ -5,7 +5,7 @@
 # SOURCE:         https://github.com/airdock-io/docker-elasticsearch
 
 # Pull base image.
-FROM airdock/oracle-jdk:latest
+FROM airdock/oracle-jdk:jdk-8u74
 
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
